@@ -40,8 +40,8 @@ public class Orchard
         if (plant.equals("female")) {
             for (int r = row - 2; r <= row+ 2; r++) {
                 if (r >= 0 && r < plants.length) {
-                    for (int c = col - 2; c <= col + 2; col++) {
-                        if (c >= 0 && c < plants.length) {
+                    for (int c = col - 2; c <= col + 2; c++) {
+                        if (c >= 0 && c < plants[0].length) {
                             if (plants[r][c].equals("male")) {
                                 return true;
                             }
@@ -59,7 +59,18 @@ public class Orchard
      */
     public ArrayList<Position> nonFruitingPlant()
     {
-        return null;
+        ArrayList<Position> noFruit = new ArrayList<Position>();
+        
+        for (int r = 0; r < plants.length; r++) {
+            for (int c = 0; c < plants[0].length; c++) {
+                Position pos = new Position(r, c);
+                if (plants[r][c].equals("female") && !willFruit(pos)) {
+                    noFruit.add(pos);
+                }
+            }
+        }
+        
+        return noFruit;
     }
     
     public String toString() {
